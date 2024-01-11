@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(['guest:api'])->group(function () {
+    Route::post("login", [App\Http\Controllers\Api\v1\AuthController::class,"login"]);
+    Route::post("register", [App\Http\Controllers\Api\v1\AuthController::class,"register"]);
 });
